@@ -1,0 +1,115 @@
+<!-- HTML para el switch -->
+<div class="theme-toggle">
+  <span class="icon-left">🌞</span>
+  <label class="switch">
+    <input type="checkbox" id="modeToggle" />
+    <span class="slider"></span>
+  </label>
+  <span class="icon-right">🌙</span>
+</div>
+
+  <main style="max-width: 800px; margin: auto; padding: 2rem;">
+    <h1>Extensión Robotizada</h1>
+    <p>Extensión para detectar vídeos de YouTube hechos con IA. Sobre todo donde el creador no le pone ni una pizca de ganas ni intención.</p>
+  </main>
+
+<!-- CSS relacionado -->
+<style>
+  :root {
+    --bg-light: #f5f5f5;
+    --text-light: #111;
+    --bg-dark: #0a192f;
+    --text-dark: #e6f1ff;
+  }
+
+  body {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  body.light-mode {
+    background-color: var(--bg-light);
+    color: var(--text-light);
+  }
+
+  .theme-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #9a86fd;
+    border-radius: 34px;
+    transition: 0.4s;
+  }
+
+  .slider::before {
+    position: absolute;
+    content: '';
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: 0.4s;
+  }
+
+  input:checked + .slider {
+    background-color: #ffdb70;
+  }
+
+  input:checked + .slider::before {
+    transform: translateX(26px);
+  }
+</style>
+
+<!-- Footer -->
+  <footer style="text-align: center; margin-top: 3rem; padding: 1rem;">
+    <span class="footer-icon"></span> Proyecto personal de Wing-Sen León Caro y en Desarrollo
+  </footer>
+
+<!-- JavaScript -->
+<script>
+  window.onload = () => {
+    const checkbox = document.getElementById('modeToggle');
+    const storedMode = localStorage.getItem('darkMode');
+    const autoDark = new Date().getHours() >= 18 || new Date().getHours() < 6;
+    const isDark = storedMode === null ? autoDark : storedMode === 'true';
+
+    document.body.classList.toggle('light-mode', !isDark);
+    checkbox.checked = !isDark;
+
+    checkbox.addEventListener('change', () => {
+      const active = !checkbox.checked;
+      document.body.classList.toggle('light-mode', !active);
+      localStorage.setItem('darkMode', active);
+    });
+  };
+
+  
+</script>

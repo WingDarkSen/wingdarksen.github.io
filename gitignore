@@ -1,0 +1,14 @@
+
+# Ignorar metadatos innecesarios de Windows/Dropbox
+*.attrs
+*Zone.Identifier*
+*.dropbox*
+
+# Ignorar archivos temporales de sistemas
+.DS_Store
+Thumbs.db
+
+# Ignorar backups y logs
+*.log
+*.bak
+*.tmp
